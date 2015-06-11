@@ -1,0 +1,5 @@
+box: wercker/default
+build:
+    steps:
+        - shellcheck:
+            files: "*.sh"
