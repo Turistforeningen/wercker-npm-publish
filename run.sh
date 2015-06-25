@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ -z "${NPM_LATEST}" ]; then
-  NPM_LATEST=true
-fi
-
 if [ -z "${NPM_EMAIL}" ]; then
   error 'Please specify email'
   exit 1
@@ -29,10 +25,16 @@ echo NPM_LATEST="${NPM_LATEST}"
 echo NPM_VERSION="${NPM_VERSION}"
 echo NPM_VERSION_PRERELEASE="${NPM_VERSION_PRERELEASE}"
 
-if [[ -n "${NPM_VERSION_PRERELEASE}" ]] || [[ "${NPM_LATEST}" != "true" ]]; then
-  echo npm publish --tag "${NPM_VERSION}"
-  npm publish --tag "${NPM_VERSION}"
+if [ -n "${NPM_VERSION_TAG}" ]; then
+  echo "npm publish --tag ${NPM_VERSION_TAG}"
+  npm publish --tag "${NPM_TAG}"
+
+elif [ -n "${NPM_VERSION_PRERELEASE}" ]; then
+  echo "npm publish --tag ${WERCKER_GIT_BRANCH}"
+  npm publish --tag "${WERCKER_GIT_BRANCH}"
+
 else
   echo npm publish
   npm publish
+
 fi
