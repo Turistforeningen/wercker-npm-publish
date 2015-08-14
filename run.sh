@@ -18,7 +18,7 @@ fi
 if [ -z "${NPM_ACCESS}" ]; then
   NPM_ACCESS=''
 else
-  NPM_ACCESS="--access ${NPM_ACCESS}"
+  NPM_ACCESS="--access=${NPM_ACCESS}"
 fi
 
 echo _auth = "${NPM_AUTH_TOKEN}" > ~/.npmrc
