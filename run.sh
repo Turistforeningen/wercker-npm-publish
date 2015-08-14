@@ -27,7 +27,6 @@ echo email = "${NPM_EMAIL}" >> ~/.npmrc
 NPM_VERSION=$(grep package.json -e 'version' | awk '{print substr($2, 2, length($2)-3)}')
 NPM_VERSION_PRERELEASE=$(echo "${NPM_VERSION}" | cut -d '-' -f 2 -s)
 
-echo NPM_LATEST="${NPM_LATEST}"
 echo NPM_VERSION="${NPM_VERSION}"
 echo NPM_VERSION_PRERELEASE="${NPM_VERSION_PRERELEASE}"
 
