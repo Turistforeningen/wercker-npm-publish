@@ -15,7 +15,7 @@ if [ ! -f ./package.json ]; then
   exit 1
 fi
 
-if [ -n "${$WERCKER_CACHE_DIR}" ]; then
+if [ -n "${WERCKER_CACHE_DIR}" ]; then
   npm config set cache "$WERCKER_CACHE_DIR/wercker/npm"
 fi
 
