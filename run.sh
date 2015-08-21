@@ -56,3 +56,9 @@ for try in $(seq "$retries"); do
 
   fi
 done
+
+if [ $? -eq 0 ]; then
+  success "Package published to NPM"
+else
+  fail "npm publish failed with status code $?"
+fi
