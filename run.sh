@@ -22,6 +22,7 @@ fi
 if [ -z "${NPM_ACCESS}" ]; then
   NPM_ACCESS=''
 else
+  info "Setting npm --access ${NPM_ACCESS}"
   NPM_ACCESS="--access=${NPM_ACCESS}"
 fi
 
@@ -31,8 +32,8 @@ echo email = "${NPM_EMAIL}" >> ~/.npmrc
 NPM_VERSION=$(grep package.json -e 'version' | awk '{print substr($2, 2, length($2)-3)}')
 NPM_VERSION_PRERELEASE=$(echo "${NPM_VERSION}" | cut -d '-' -f 2 -s)
 
-echo NPM_VERSION="${NPM_VERSION}"
-echo NPM_VERSION_PRERELEASE="${NPM_VERSION_PRERELEASE}"
+info NPM_VERSION="${NPM_VERSION}"
+info NPM_VERSION_PRERELEASE="${NPM_VERSION_PRERELEASE}"
 
 if [ -n "${NPM_VERSION_TAG}" ]; then
   echo "npm publish . --tag ${NPM_VERSION_TAG} ${NPM_ACCESS}"
