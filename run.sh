@@ -36,14 +36,14 @@ echo NPM_VERSION_PRERELEASE="${NPM_VERSION_PRERELEASE}"
 
 if [ -n "${NPM_VERSION_TAG}" ]; then
   echo "npm publish --tag ${NPM_VERSION_TAG} ${NPM_ACCESS}"
-  npm publish --tag "${NPM_TAG}" "${NPM_ACCESS}"
+  npm publish . --tag "${NPM_TAG}" "${NPM_ACCESS}"
 
 elif [ -n "${NPM_VERSION_PRERELEASE}" ]; then
   echo "npm publish --tag ${WERCKER_GIT_BRANCH} ${NPM_ACCESS}"
-  npm publish --tag "${WERCKER_GIT_BRANCH}" "${NPM_ACCESS}"
+  npm publish . --tag "${WERCKER_GIT_BRANCH}" "${NPM_ACCESS}"
 
 else
   echo "npm publish ${NPM_ACCESS}"
-  npm publish "${NPM_ACCESS}"
+  npm publish . "${NPM_ACCESS}"
 
 fi
