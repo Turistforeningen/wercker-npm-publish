@@ -52,7 +52,7 @@ for try in $(seq "$retries"); do
 
   else
     info "npm publish . ${NPM_ACCESS}"
-    npm publish . "${NPM_ACCESS}" && break
+    npm publish . --tag latest "${NPM_ACCESS}" && break
 
   fi
 done
