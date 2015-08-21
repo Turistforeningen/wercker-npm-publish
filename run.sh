@@ -29,7 +29,9 @@ fi
 echo _auth = "${NPM_AUTH_TOKEN}" > ~/.npmrc
 echo email = "${NPM_EMAIL}" >> ~/.npmrc
 
-NPM_VERSION=$(grep package.json -e 'version' | awk '{print substr($2, 2, length($2)-3)}')
+NPM_VERSION=$(
+  grep package.json -e 'version' | awk '{print substr($2, 2, length($2)-3)}'
+)
 NPM_VERSION_PRERELEASE=$(echo "${NPM_VERSION}" | cut -d '-' -f 2 -s)
 
 info NPM_VERSION="${NPM_VERSION}"
