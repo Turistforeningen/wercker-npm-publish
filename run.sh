@@ -44,7 +44,7 @@ for try in $(seq "$retries"); do
 
   if [ -n "${NPM_VERSION_TAG}" ]; then
     info "npm publish . --tag ${NPM_VERSION_TAG} ${NPM_ACCESS}"
-    npm publish . --tag "${NPM_TAG}" "${NPM_ACCESS}" && break
+    npm publish . --tag "${NPM_VERSION_TAG}" "${NPM_ACCESS}" && break
 
   elif [ -n "${NPM_VERSION_PRERELEASE}" ]; then
     info "npm publish . --tag ${WERCKER_GIT_BRANCH} ${NPM_ACCESS}"
