@@ -7,25 +7,25 @@ else
 fi
 
 function npm() {
-  echo "npm $@"
+  echo "npm $*"
   echo "npm ${EXIT_CODE}"
   return ${EXIT_CODE}
 }
 
 function fail() {
-  echo "fail: $@"
+  echo "fail: $*"
 }
 
 function success() {
-  echo "success: $@"
+  echo "success: $*"
 }
 
 function warn() {
-  echo "warn: $@"
+  echo "warn: $*"
 }
 
 function info() {
-  echo "info: $@"
+  echo "info: $*"
 }
 
 export -f npm fail success warn info
