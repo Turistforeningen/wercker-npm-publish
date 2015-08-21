@@ -1,17 +1,17 @@
 #!/bin/bash
 
 if [ -z "${NPM_EMAIL}" ]; then
-  error 'Please specify email'
+  fail 'Please specify email'
   exit 1
 fi
 
 if [ -z "${NPM_AUTH_TOKEN}" ]; then
-  error 'Please specify auth token'
+  fail 'Please specify auth token'
   exit 1
 fi
 
 if [ ! -f ./package.json ]; then
-  error 'Project must contain a package.json'
+  fail 'Project must contain a package.json'
   exit 1
 fi
 
