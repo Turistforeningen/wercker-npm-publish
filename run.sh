@@ -35,16 +35,22 @@ NPM_VERSION_PRERELEASE=$(echo "${NPM_VERSION}" | cut -d '-' -f 2 -s)
 info NPM_VERSION="${NPM_VERSION}"
 info NPM_VERSION_PRERELEASE="${NPM_VERSION_PRERELEASE}"
 
-if [ -n "${NPM_VERSION_TAG}" ]; then
-  echo "npm publish . --tag ${NPM_VERSION_TAG} ${NPM_ACCESS}"
-  npm publish . --tag "${NPM_TAG}" "${NPM_ACCESS}"
+retries=3
 
-elif [ -n "${NPM_VERSION_PRERELEASE}" ]; then
-  echo "npm publish . --tag ${WERCKER_GIT_BRANCH} ${NPM_ACCESS}"
-  npm publish . --tag "${WERCKER_GIT_BRANCH}" "${NPM_ACCESS}"
+for try in $(seq "$retries"); do
+  info "try: ${try}"
 
-else
-  echo "npm publish . ${NPM_ACCESS}"
-  npm publish . "${NPM_ACCESS}"
+  if [ -n "${NPM_VERSION_TAG}" ]; then
+    info "npm publish . --tag ${NPM_VERSION_TAG} ${NPM_ACCESS}"
+    npm publish . --tag "${NPM_TAG}" "${NPM_ACCESS}" && break
 
-fi
+  elif [ -n "${NPM_VERSION_PRERELEASE}" ]; then
+    info "npm publish . --tag ${WERCKER_GIT_BRANCH} ${NPM_ACCESS}"
+    npm publish . --tag "${WERCKER_GIT_BRANCH}" "${NPM_ACCESS}" && break
+
+  else
+    info "npm publish . ${NPM_ACCESS}"
+    npm publish . "${NPM_ACCESS}" && break
+
+  fi
+done
