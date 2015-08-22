@@ -2,8 +2,6 @@
 
 ## Pipeline Variables
 
-* `NPM_EMAIL`
-* `NPM_AUTH_TOKEN`
-* `NPM_VERSION_TAG` (optional)
-* `NPM_ACCESS` (optional) - required for [scoped
-  packages](https://docs.npmjs.com/misc/scope)
+* `NPM_TOKEN` - npm auth session token (required)
+* `NPM_CONFIG_TAG` - npm package tag (optional, default `latest`)
+* `NPM_CONFIG_ACCESS` - npm package access (optional, default `public`)

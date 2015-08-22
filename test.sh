@@ -30,7 +30,6 @@ function info() {
 
 export -f npm fail success warn info
 
-export NPM_EMAIL=foo@bar.com
-export NPM_AUTH_TOKEN=boobar123
+export NPM_TOKEN=a-b-c-d
 
 ./run.sh
