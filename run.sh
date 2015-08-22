@@ -10,10 +10,10 @@ npm_setup() {
     npm config set cache "$WERCKER_CACHE_DIR/wercker/npm"
   fi
 
-  if [ -n "${NPM_CONFIG_ACCESS}" ]; then
-    export NPM_CONFIG_ACCESS="--access ${NPM_CONFIG_ACCESS}"
+  if [ -z "${NPM_CONFIG_ACCESS}" ]; then
+    npm config set access public
   else
-    export NPM_CONFIG_ACCESS="--access public"
+    info "NPM_CONFIG_ACCESS=${NPM_CONFIG_ACCESS}"
   fi
 }
 
@@ -43,16 +43,16 @@ npm_publish() {
     info "try: ${try}"
 
     if [ -n "${NPM_CONFIG_TAG}" ]; then
-      info "npm publish . --tag ${NPM_CONFIG_TAG} ${NPM_CONFIG_ACCESS}"
-      npm publish . --tag "${NPM_CONFIG_TAG}" "${NPM_CONFIG_ACCESS}" && return
+      info "npm publish . --tag ${NPM_CONFIG_TAG}"
+      npm publish . --tag "${NPM_CONFIG_TAG}" && return
 
     elif [ -n "${NPM_VERSION_PRERELEASE}" ]; then
-      info "npm publish . --tag ${WERCKER_GIT_BRANCH} ${NPM_CONFIG_ACCESS}"
-      npm publish . --tag "${WERCKER_GIT_BRANCH}" "${NPM_CONFIG_ACCESS}" && return
+      info "npm publish . --tag ${WERCKER_GIT_BRANCH}"
+      npm publish . --tag "${WERCKER_GIT_BRANCH}" && return
 
     else
-      info "npm publish . --tag latest ${NPM_CONFIG_ACCESS}"
-      npm publish . --tag latest "${NPM_CONFIG_ACCESS}" && return
+      info "npm publish . --tag latest"
+      npm publish . --tag latest && return
 
     fi
   done
