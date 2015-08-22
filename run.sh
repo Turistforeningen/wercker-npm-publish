@@ -34,8 +34,8 @@ npm_publish() {
   NPM_VERSION=$(grep package.json -e 'version' | awk '{print substr($2, 2, length($2)-3)}')
   NPM_VERSION_PRERELEASE=$(echo "${NPM_VERSION}" | cut -d '-' -f 2 -s)
 
-  info NPM_VERSION="${NPM_VERSION}"
-  info NPM_VERSION_PRERELEASE="${NPM_VERSION_PRERELEASE}"
+  info "NPM_VERSION=${NPM_VERSION}"
+  info "NPM_VERSION_PRERELEASE=${NPM_VERSION_PRERELEASE}"
 
   retries=3
 
