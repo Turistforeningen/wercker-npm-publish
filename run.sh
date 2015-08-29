@@ -11,6 +11,7 @@ npm_setup() {
   fi
 
   if [ -z "${NPM_CONFIG_ACCESS}" ]; then
+    export NPM_CONFIG_ACCESS=public
     npm config set access public
   else
     info "NPM_CONFIG_ACCESS=${NPM_CONFIG_ACCESS}"
