@@ -10,7 +10,7 @@ npm_setup() {
     npm config set cache "$WERCKER_CACHE_DIR/wercker/npm"
   fi
 
-  if [ -z "${NPM_CONFIG_ACCESS}" ]; then
+  if [ -z "${WERCKER_NPM_CONFIG_ACCESS}" ]; then
     export NPM_CONFIG_ACCESS=public
     npm config set access public
   else
